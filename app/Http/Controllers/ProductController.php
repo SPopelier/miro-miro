@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 class ProductController extends Controller {
     public function index()  {
-        return "Liste des produits";
+        return view ('product');
     }
 
     public function show($id)

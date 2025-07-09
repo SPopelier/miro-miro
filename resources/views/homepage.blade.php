@@ -24,7 +24,7 @@
     {{-- Contenu de la section hero --}}
     <section class="hero-section d-flex align-items-center justify-content-center text-center">
         <div class="container">
-            <p class="mb-4">MIRO MIRO propose un large choix de lunettes photochromiques, du design à la vente, incluant des modèles personnalisés.</p>
+            <p class="mb-4 text-white">MIRO MIRO propose un large choix de lunettes photochromiques, du design à la vente, incluant des modèles personnalisés.</p>
             <a href="#products" class="btn btn-dark">EXPLORER</a>
         </div>
     </section>
@@ -82,7 +82,7 @@
 
     {{-- Contenu  Avantages clients --}}
 
-    <section class="container text-center background-light">
+    <section class="container text-center background-light pb-5">
         <div class="row justify-content-center">
             <div class="col-10 col-md-6 mt-5">
                 <img src="{{ asset('asset/lunettes.png') }}" alt="image de lunettes" class="img-fluid mb-3">
