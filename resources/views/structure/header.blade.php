@@ -9,32 +9,31 @@
 
 
 
-  </head>
-  <body>
+<header class="navbar navbar-expand-lg bg-miro-color py-3 position-relative">
+  <div class="container d-flex justify-content-between align-items-center">
 
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
-      <div class="container-fluid">
-        <a class="navbar-brand fw-bold" href="#">MIRO MIRO</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="offcanvas offcanvas-end offcanvas-custom" id="offcanvasNavbar">
-          <div class="offcanvas-header">
-            <h5 class="offcanvas-title">Menu</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
-          </div>
-          <div class="offcanvas-body">
-            <ul class="navbar-nav">
-              <li class="nav-item"><a class="nav-link" href="#">Accueil</a></li>
-              <li class="nav-item"><a class="nav-link" href="#">Explorer</a></li>
-              <li class="nav-item"><a class="nav-link" href="#">Personnaliser</a></li>
-              <li class="nav-item"><a class="nav-link" href="#">Compte</a></li>
-              <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </nav>
+    <!-- Logo -->
+    <a class="navbar-brand" href="#">
+      <img src="{{ asset('asset/logonoir.png') }}" alt="Logo Miro Miro" height="50">
+    </a>
+
+    <!-- Burger -->
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Menu (masqué sur mobile) -->
+    <div class="collapse navbar-collapse justify-content-end" id="navbarMenu">
+      <ul class="navbar-nav gap-4">
+        <li class="nav-item"><a class="nav-link" href="#">Accueil</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Explorer</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Personnaliser</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  
+</header>
+
 
 
