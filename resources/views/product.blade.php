@@ -26,7 +26,8 @@
                 <div class="d-flex flex-wrap justify-content-center gap-4">
                     @foreach($produits as $produit)
                     <div class="card background-light mt-5" style="width: 18rem;">
-                        <img src="{{ asset($produit->image) }}" class="card-img-top" alt="Image de {{ $produit->nom }}">
+                        <img src="{{ asset('asset/' . $produit->image) }}" class="card-img-top" alt="Image de {{ $produit->nom }}">
+
 
                         <div class="card-body">
                             <h2 class="card-title">{{ $produit->nom }}</h2>

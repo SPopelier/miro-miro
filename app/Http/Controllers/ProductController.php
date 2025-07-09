@@ -9,6 +9,6 @@ class ProductController extends Controller
     public function index()
     {
         $produits = DB::select('SELECT * FROM products');
-        return view('products', ['produits' => $produits]);
+        return view('product', ['produits' => $produits]);
     }
 }
