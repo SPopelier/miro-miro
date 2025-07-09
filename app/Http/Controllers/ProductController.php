@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-class ProductController extends Controller {
-    public function index()  {
-        return view ('product');
-    }
+use Illuminate\Support\Facades\DB;
 
-    public function show($id)
+class ProductController extends Controller
+{
+    public function index()
     {
-        return "Fiche du produit $id";
+        $produits = DB::select('SELECT * FROM products');
+        return view('products', ['produits' => $produits]);
     }
 }

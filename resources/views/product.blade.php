@@ -23,50 +23,22 @@
             </div>
 
             <div class="container py-5">
-                {{-- Produit 1 --}}
                 <div class="d-flex flex-wrap justify-content-center gap-4">
-                    <div class="card background-light mt-5 " style="width: 18rem;">
-                        <img src="{{ asset('asset/picture1.png') }}" class="card-img-top" alt="photo de lunette">
+                    @foreach($produits as $produit)
+                    <div class="card background-light mt-5" style="width: 18rem;">
+                        <img src="{{ asset($produit->image) }}" class="card-img-top" alt="Image de {{ $produit->nom }}">
 
                         <div class="card-body">
-                            <h2 class="card-title">Nom des Lunettes</h2>
-                            <p class="card-text">Ces lunettes sont magnifique genre wahhh suis jaloux de fou</p>
-                            <p>10€</p>
+                            <h2 class="card-title">{{ $produit->nom }}</h2>
+                            <p class="card-text">{{ $produit->description }}</p>
+                            <p>{{ $produit->prix }} €</p>
                             <button class="btn btn-dark btn-sm float-end">VOIR</button>
                         </div>
-
                     </div>
+                    @endforeach
                 </div>
+            </div>
 
-                {{-- Produit 2 --}}
-                <div class="d-flex flex-wrap justify-content-center gap-4">
-                    <div class="card background-light mt-5 " style="width: 18rem;">
-                        <img src="{{ asset('asset/picture1.png') }}" class="card-img-top" alt="photo de lunette">
-
-                        <div class="card-body">
-                            <h2 class="card-title">Nom des Lunettes</h2>
-                            <p class="card-text">Ces lunettes sont magnifique genre wahhh suis jaloux de fou</p>
-                            <p>10€</p>
-                            <button class="btn btn-dark btn-sm float-end">VOIR</button>
-                        </div>
-
-                    </div>
-                </div>
-
-                {{-- Produit 3 --}}
-                <div class="d-flex flex-wrap justify-content-center gap-4">
-                    <div class="card background-light mt-5 " style="width: 18rem;">
-                        <img src="{{ asset('asset/picture1.png') }}" class="card-img-top" alt="photo de lunette">
-
-                        <div class="card-body">
-                            <h2 class="card-title">Nom des Lunettes</h2>
-                            <p class="card-text">Ces lunettes sont magnifique genre wahhh suis jaloux de fou</p>
-                            <p>10€</p>
-                            <button class="btn btn-dark btn-sm float-end">VOIR</button>
-                        </div>
-
-                    </div>
-                </div>
         </section>
 
         {{-- Footer personnalisé --}}
