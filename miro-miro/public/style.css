@@ -1,0 +1,109 @@
+:root {
+    --miro-color: #E3B46A;
+    --text-dark: #1E1E1E;
+}
+
+/* ───────────────────────────────
+    STRUCTURE PRINCIPALE
+──────────────────────────────── */
+
+.navbar-custom {
+    background-color: var(--miro-color);
+}
+
+.offcanvas-custom {
+    background-color: var(--miro-color);
+}
+
+.bg-miro-color {
+    background-color: var(--miro-color);
+}
+
+/* ───────────────────────────────
+    HERO SECTION
+──────────────────────────────── */
+
+.hero-section {
+  background-image: url("/asset/homepage.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+background-color: rgba(227, 180, 106, 0.8);
+  min-height: 400px;
+  padding: 4rem 1rem;
+}
+
+.hero h1 {
+    font-size: 1.2rem;
+    max-width: 90%;
+    margin: 0 auto;
+}
+
+.hero button {
+    background-color: var(--text-dark);
+    color: #F9F2E7;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-weight: bold;
+}
+
+
+/* ───────────────────────────────
+    BACKGROUND GREY/BLUE
+──────────────────────────────── */
+.background-light {
+    background-color: #E9ECEF;
+}
+
+/* ───────────────────────────────
+    LOGO
+──────────────────────────────── */
+
+.logo {
+    width: 65px;
+    height: 65px;
+}
+
+/* ───────────────────────────────
+    FOOTER
+──────────────────────────────── */
+
+.footer-separator {
+    width: 100%;
+    max-height: 60px;
+    object-fit: cover;
+    display: block;
+    margin-bottom: -5px;
+}
+
+/* ───────────────────────────────
+    RESPONSIVE
+──────────────────────────────── */
+
+@media screen and (max-width: 768px) {
+    .separator-img {
+        height: 40px;
+        object-fit: cover;
+    }
+}
+
+/* ───────────────────────────────
+    FOOTER
+──────────────────────────────── */
+
+@media (min-width: 768px) {
+    footer ul.d-flex {
+        flex-direction: row !important;
+        justify-content: center;
+        gap: 2rem;
+    }
+
+    footer .small a {
+        display: inline-block !important;
+        margin: 0 0.5rem;
+    }
+
+    footer .small p {
+        margin-bottom: 0.2rem;
+    }
+}

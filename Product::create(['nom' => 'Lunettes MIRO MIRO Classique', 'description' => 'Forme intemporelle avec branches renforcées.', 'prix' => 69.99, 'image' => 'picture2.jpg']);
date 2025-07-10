@@ -1,0 +1,10 @@
+[90m= [39m[34;4mApp\Models\Product[39;24m {#5255
+    [34mnom[39m: "[32mLunettes MIRO MIRO Éclat[39m",
+    [34mdescription[39m: "[32mMonture fine en métal doré, parfaite pour l’été.[39m",
+    [34mprix[39m: [33m59.99[39m,
+    [34mimage[39m: "[32mpicture1.jpg[39m",
+    [34mupdated_at[39m: "[32m2025-07-10 07:08:15[39m",
+    [34mcreated_at[39m: "[32m2025-07-10 07:08:15[39m",
+    [34mid[39m: [35m1[39m,
+  }
+
