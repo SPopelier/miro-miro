@@ -62,4 +62,13 @@ class BackofficeController extends Controller
 
         return redirect()->route('backoffice.index')->with('message', 'Produit mis à jour !');
     }
+
+    public function destroy($id)
+{
+    $produit = Product::findOrFail($id);
+    $produit->delete();
+
+    return redirect()->route('backoffice.index')->with('message', 'Produit supprimé');
+}
+
 }

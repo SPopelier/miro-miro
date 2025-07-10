@@ -30,6 +30,7 @@
         <li class="nav-item"><a class="nav-link" href="{{ route('homepage') }}">Accueil</a></li>
         <li class="nav-item"><a class="nav-link" href="{{ route('product') }}">Explorer</a></li>
         <li class="nav-item"><a class="nav-link" href="{{ route('productsheet') }}">Personnaliser</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{ route('mon-compte') }}">Mon Compte</a></li>
         <!--<li class="nav-item"><a class="nav-link" href="{{ route('contact') }}">Contact</a></li>-->
       </ul>
     </div>

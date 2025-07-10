@@ -4,6 +4,12 @@ use Illuminate\Support\Facades\Route;
 use App\Models\Product;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\BackofficeController;
+use App\Http\Controllers\AccountController;
+
+
+Route::get('/dashboard', [AccountController::class, 'dashboard'])
+    ->middleware('auth')
+    ->name('dashboard');
 
 
 // Accueil
@@ -49,7 +55,17 @@ Route::prefix('backoffice')->group(function () {
     Route::get('/produits/{id}/edit', [BackofficeController::class, 'edit'])->name('backoffice.edit');
     Route::put('/produits/{id}', [BackofficeController::class, 'update'])->name('backoffice.update');
 
-    // Mise à jour d’un produit
-    Route::put('/produits/{id}', [BackofficeController::class, 'update'])->name('backoffice.update');
+    // Suppression d'un produit
+    Route::delete('/products/{id}', [BackofficeController::class, 'destroy'])->name('backoffice.destroy');
 });
+
+// Mon Compte (avec AccountController)
+Route::get('/mon-compte', [AccountController::class, 'show'])->name('mon-compte');
+Route::post('/connexion', [AccountController::class, 'login'])->name('connexion');
+Route::post('/inscription', [AccountController::class, 'register'])->name('inscription');
+
+//Dashboard
+Route::get('/dashboard', [AccountController::class, 'dashboard'])
+    ->middleware('auth')
+    ->name('dashboard');
 
