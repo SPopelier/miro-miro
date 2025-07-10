@@ -1,5 +1,9 @@
+@extends('layouts.main') 
 
-  @include('structure.header')
+@section('title', 'Produits triés par prix croissant')
+
+
+@section('content')
   <h1>Produits triés par prix croissant</h1>
 
   <p>Nombre de produits : {{ count($produits) }}</p>
@@ -9,6 +13,4 @@
     <li>{{ $produit->nom }} - {{ $produit->prix }} €</li>
     @endforeach
   </ul>
-
-  {{-- Footer personnalisé --}}
-  @include('structure.footer')
+@endsection

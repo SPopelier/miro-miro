@@ -1,8 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProductController;
 use App\Models\Product;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\BackofficeController;
+
 
 // Accueil
 Route::get('/', function () {
@@ -32,3 +34,22 @@ Route::get('/personnaliser', function () {
 Route::get('/contact', function () {
     return view('contact');
 })->name('contact');
+
+// Backoffice
+Route::prefix('backoffice')->group(function () {
+    
+    // Page d'accueil du backoffice
+    Route::get('/', [BackofficeController::class, 'index'])->name('backoffice.index');
+
+    // Création d’un produit
+    Route::get('/create', [BackofficeController::class, 'create'])->name('backoffice.create');
+    Route::post('/store', [BackofficeController::class, 'store'])->name('backoffice.store');
+
+    // Édition et mise à jour d’un produit
+    Route::get('/produits/{id}/edit', [BackofficeController::class, 'edit'])->name('backoffice.edit');
+    Route::put('/produits/{id}', [BackofficeController::class, 'update'])->name('backoffice.update');
+
+    // Mise à jour d’un produit
+    Route::put('/produits/{id}', [BackofficeController::class, 'update'])->name('backoffice.update');
+});
+

@@ -35,4 +35,20 @@ class ProductController extends Controller
 
         return redirect()->back()->with('error', 'Option de tri invalide.');
     }
+
+    public function update(Request $request, $id)
+{
+    $request->validate([
+        'nom' => 'required|string',
+        'prix' => 'required|numeric',
+        'description' => 'nullable|string',
+        'stock' => 'required|integer'
+    ]);
+
+    $produit = Product::findOrFail($id);
+    $produit->update($request->all());
+
+    return redirect()->route('product.index')->with('message', 'Produit mis à jour !');
+}
+
 }

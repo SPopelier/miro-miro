@@ -1,27 +1,13 @@
-<!doctype html>
-<html lang="fr">
+@extends('layouts.main')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Accueil</title>
+@section('title', 'Accueil')
 
-    {{-- CSS --}}
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('style.css') }}">
-</head>
+@section('content')
 
-<body>
+    <div style="height: 100px;"></div>
 
-    {{-- Header personnalisé --}}
-    @include('structure.header')
-
-    <div style="height: 100px;"></div> {{-- Espace AVANT le séparateur --}}
-
-    {{-- Séparateur du haut des produits --}}
     <img src="{{ asset('asset/separation_haut.png') }}" alt="séparateur haut" style="width:100%; display:block;">
 
-    {{-- Contenu de la section hero --}}
     <section class="hero-section d-flex align-items-center justify-content-center text-center">
         <div class="container">
             <p class="mb-4 text-white">MIRO MIRO propose un large choix de lunettes photochromiques, du design à la vente, incluant des modèles personnalisés.</p>
@@ -29,58 +15,40 @@
         </div>
     </section>
 
-    {{-- Séparateur du bas du hero --}}
     <img src="{{ asset('asset/separation_bas.png') }}" alt="séparateur"
         style="width:100%; display:block; margin-bottom:-1px;">
 
-
-    {{-- Contenu produits --}}
     <section id="products" class="container py-5">
         <h2 class="mb-4">Nos produits tendances</h2>
 
         <div class="row row-cols-1 row-cols-md-2 g-4">
             @for ($i = 0; $i < 6; $i++)
                 <div class="col">
-                <div class="product-card d-flex align-items-center gap-3 p-3 border rounded bg-miro-color">
-                    {{-- Image du produit --}}
-                    <img src="{{ asset('asset/produit1.png') }}" alt="Lunettes Lorem"
-                        style="height: 80px; width: auto; object-fit: contain;">
-
-                    {{-- Infos produit --}}
-                    <div class="flex-grow-1">
-                        <p class="mb-1">Lorem</p>
-                        <p class="fw-bold">19€</p>
+                    <div class="product-card d-flex align-items-center gap-3 p-3 border rounded bg-miro-color">
+                        <img src="{{ asset('asset/produit1.png') }}" alt="Lunettes Lorem"
+                            style="height: 80px; width: auto; object-fit: contain;">
+                        <div class="flex-grow-1">
+                            <p class="mb-1">Lorem</p>
+                            <p class="fw-bold">19€</p>
+                        </div>
+                        <button class="btn btn-dark btn-sm">VOIR</button>
                     </div>
-
-                    {{-- Bouton --}}
-                    <button class="btn btn-dark btn-sm">VOIR</button>
                 </div>
+            @endfor
         </div>
-        @endfor
-        </div>
-
     </section>
 
-    {{-- Contenu Personnaliser --}}
-
     <section class="w-100 mt-5">
-
-        {{-- Séparateur du haut des produits --}}
         <img src="{{ asset('asset/separation_haut.png') }}" alt="séparateur haut" style="width:100%; display:block;">
-
         <div class="bg-miro-color d-flex flex-column justify-content-center align-items-center p-4">
-            <p class="text-center mb-3">Vous souhaitez personnaliser vos lunettes ? Vous pouvez le faire ne ligne avec notre sélécteur en sélectionnant parmi différentes formes, couleurs et styles.</p>
+            <p class="text-center mb-3">Vous souhaitez personnaliser vos lunettes ? Vous pouvez le faire en ligne avec notre sélecteur en sélectionnant parmi différentes formes, couleurs et styles.</p>
             <button class="btn btn-light fw-bold">JE VEUX</button>
         </div>
-
-        {{-- Séparateur du bas du header --}}
         <div class="mb-5">
             <img src="{{ asset('asset/separation_bas.png') }}" alt="séparateur"
                 style="width:100%; display:block; margin-bottom:-1px;">
         </div>
     </section>
-
-    {{-- Contenu  Avantages clients --}}
 
     <section class="container text-center background-light pb-5">
         <div class="row justify-content-center">
@@ -105,14 +73,4 @@
         </div>
     </section>
 
-    {{-- Footer personnalisé --}}
-    @include('structure.footer')
-
-
-
-    {{-- JS --}}
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
-
-</body>
-
-</html>
+@endsection

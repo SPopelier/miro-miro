@@ -1,2 +1,5 @@
-    {{-- Header personnalisé --}}
-    @include('structure.header')
+@extends('layouts.main') 
+@section('title', 'Fiche Produit')
+@section('content')
+
+@endsection

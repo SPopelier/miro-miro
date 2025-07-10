@@ -1,9 +1,12 @@
-{{-- Header personnalisé --}}
-@include('structure.header')
+@extends('layouts.main')
 
+@section('title', 'Explorer les produits')
+
+@section('content')
 <section>
     {{-- Formulaire de tri --}}
     <form method="POST" action="{{ route('product.filtrer') }}" class="w-50 mx-auto mt-5">
+        @csrf
         <select name="tri" class="form-select mb-3">
             <option value="nom">Trier par nom</option>
             <option value="prix">Trier par prix</option>
@@ -11,7 +14,7 @@
         <button type="submit" class="btn btn-dark btn-lg d-block w-100">FILTRER</button>
     </form>
 
-    {{-- Message flash --}}
+    {{-- Messages flash --}}
     @if(session('message'))
         <div class="alert alert-success text-center mt-3">
             {{ session('message') }}
@@ -41,6 +44,4 @@
         </div>
     </div>
 </section>
-
-{{-- Footer personnalisé --}}
-@include('structure.footer')
+@endsection
