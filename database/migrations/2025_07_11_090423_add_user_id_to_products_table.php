@@ -15,7 +15,7 @@ return new class extends Migration
             //ajoute une colonne user_id
             //crée une clé étrangère à la table user
             //si un utilisateur est supprimé alors tous ses produits aussi
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->unsignedBigInteger('user_id')->nullable();
         });
     }
 

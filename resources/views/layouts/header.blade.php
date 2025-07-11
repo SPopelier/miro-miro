@@ -35,4 +35,15 @@
     </div>
   </div>
 
+  @if (Auth::check())
+    <div>
+        Connecté en tant que : {{ Auth::user()->email }}
+        {{-- ou {{ Auth::user()->name }} si tu veux afficher le nom --}}
+    </div>
+@else
+    <div>
+        Non connecté
+    </div>
+@endif
+
 </header>

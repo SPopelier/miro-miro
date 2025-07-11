@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Product;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProductSheetController;
 use App\Http\Controllers\BackofficeController;
 use App\Http\Controllers\AccountController;
@@ -25,6 +26,7 @@ Route::get('/product/fiche/{id}', [ProductSheetController::class, 'show'])->name
 Route::get('/contact', fn() => view('contact'))->name('contact');
 
 // 🔐 Compte utilisateur (standard)
+Route::get('/login', [AccountController::class, 'show'])->name('login');
 Route::get('/mon-compte', [AccountController::class, 'show'])->name('mon-compte');
 Route::post('/connexion', [AccountController::class, 'login'])->name('connexion');
 Route::post('/inscription', [AccountController::class, 'register'])->name('inscription');
@@ -44,11 +46,28 @@ Route::post('/logout', function () {
 
 // 🛒 Affichage du panier utilisateur
 Route::get('/mon-panier', function () {
-    return view('cart');
+    $user = Auth::user();
+
+    // Crée un panier si l'utilisateur n'en a pas encore
+    if (!$user->panier) {
+        $panier = new \App\Models\Panier();
+        $panier->user_id = $user->id;
+        $panier->save();
+    } else {
+        $panier = $user->panier;
+    }
+
+    // Charge les produits liés
+    $panier->load('products');
+
+    return view('cart', compact('panier'));
 })->middleware('auth')->name('cart');
 
 // ➕ Ajouter un produit au panier
 Route::post('/panier/ajouter/{id}', [\App\Http\Controllers\CartController::class, 'ajouter'])->name('panier.ajouter');
+
+//supprimer un produit du panier
+Route::delete('/panier/retirer/{id}', [CartController::class, 'retirer'])->name('panier.retirer');
 
 
 // 🛡️ Admin - Tableau de bord

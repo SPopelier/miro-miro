@@ -14,8 +14,25 @@ class AccountController extends Controller
     // Affiche la page "Mon compte"
     public function show()
     {
-        return view('account');
+    if (Auth::check()) {
+        return redirect()->route('dashboard');
     }
+
+    return view('account');
+    }
+
+    /**
+ * Affiche le formulaire de connexion pour les utilisateurs.
+ *
+ * Laravel redirige automatiquement les utilisateurs non authentifiés
+ * vers la route nommée 'login' lorsqu'une route protégée par le middleware 'auth' est appelée.
+ * Cette méthode fournit la vue correspondante pour éviter l'erreur "Route [login] not defined".
+ */
+public function showLoginForm()
+{
+    return view('login');
+}
+
 
     // 🔐 Connexion utilisateur OU admin (détection manuelle)
     public function login(Request $request)
@@ -57,6 +74,9 @@ class AccountController extends Controller
             'email'    => $validated['email'],
             'password' => Hash::make($validated['password']),
         ]);
+
+        // Création automatique du panier
+        $user->panier()->create([]);
 
         Auth::login($user);
 

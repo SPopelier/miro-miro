@@ -38,17 +38,18 @@
                         <p class="card-text">{{ $produit->description }}</p>
                         <p>{{ $produit->prix }} €</p>
 
-                        <a href="{{ route('productsheet.show', $produit->id) }}" class="btn btn-dark btn-sm float-end">VOIR</a >
-                            <br>
-                            <br>
-                            <a href="{{ route('cart', $produit->id) }}" class="btn btn-dark btn-sm float-end">AJOUTER AU PANIER</a>
+                        {{-- Voir la fiche produit --}}
+                        <a href="{{ route('productsheet.show', $produit->id) }}" class="btn btn-dark btn-sm">VOIR</a>
 
-                            
+                        {{-- Ajouter au panier (POST) --}}
+                        <form action="{{ route('panier.ajouter', $produit->id) }}" method="POST" class="mt-2">
+                            @csrf
+                            <button type="submit" class="btn btn-dark btn-sm w-100">AJOUTER AU PANIER</button>
+                        </form>
                     </div>
                 </div>
             @endforeach
         </div>
     </div>
-
 </section>
 @endsection
