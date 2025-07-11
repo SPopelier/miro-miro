@@ -1,12 +1,5 @@
-    <!-- Footer -->
-
-    <!-- Séparateur vague -->
-    <div class="footer-separator mt-5">
-      <img src="{{ asset('asset/separation_haut.png') }}" alt="séparateur haut" class="img-fluid" style="display: block;">
-    </div>
-
-    <!-- Footer -->
-    <footer class="text-center text-dark py-4 bg-miro-color mt-0">
+      <!-- Footer -->
+    <footer class="text-center text-dark py-4 bg-miro-color mt-5">
       <div class="container">
 
         <!-- Logo -->
