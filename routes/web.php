@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Product;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProductSheetController;
 use App\Http\Controllers\BackofficeController;
 use App\Http\Controllers\AccountController;
 
@@ -17,8 +18,10 @@ Route::get('/product/prix', [ProductController::class, 'sortedByPrice'])->name('
 Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.show');
 Route::post('/product/filtrer', [ProductController::class, 'filtrer'])->name('product.filtrer');
 
+// 🧾 Fiche produit individuelle via ProductsheetController
+Route::get('/product/fiche/{id}', [ProductSheetController::class, 'show'])->name('productsheet.show');
+
 // 🔵 Autres pages
-Route::get('/personnaliser', fn() => view('productsheet'))->name('productsheet');
 Route::get('/contact', fn() => view('contact'))->name('contact');
 
 // 🔐 Compte utilisateur (standard)
@@ -38,6 +41,15 @@ Route::post('/logout', function () {
     request()->session()->regenerateToken();
     return redirect('/');
 })->name('logout');
+
+// 🛒 Affichage du panier utilisateur
+Route::get('/mon-panier', function () {
+    return view('cart');
+})->middleware('auth')->name('cart');
+
+// ➕ Ajouter un produit au panier
+Route::post('/panier/ajouter/{id}', [\App\Http\Controllers\CartController::class, 'ajouter'])->name('panier.ajouter');
+
 
 // 🛡️ Admin - Tableau de bord
 Route::get('/admin/dashboard', [AccountController::class, 'adminDashboard'])

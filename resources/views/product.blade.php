@@ -37,11 +37,18 @@
                         <h2 class="card-title">{{ $produit->nom }}</h2>
                         <p class="card-text">{{ $produit->description }}</p>
                         <p>{{ $produit->prix }} €</p>
-                        <a href="{{ route('product.show', $produit->id) }}" class="btn btn-dark btn-sm float-end">VOIR</a>
+
+                        <a href="{{ route('productsheet.show', $produit->id) }}" class="btn btn-dark btn-sm float-end">VOIR</a >
+                            <br>
+                            <br>
+                            <a href="{{ route('cart', $produit->id) }}" class="btn btn-dark btn-sm float-end">AJOUTER AU PANIER</a>
+
+                            
                     </div>
                 </div>
             @endforeach
         </div>
     </div>
+
 </section>
 @endsection

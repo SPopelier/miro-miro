@@ -45,4 +45,16 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    //un utilisateur peut ajouter plusieurs produits
+    public function products()
+{
+    return $this->hasMany(Product::class);
+}
+
+public function panier()
+{
+   return $this->hasOne(\App\Models\Panier::class);
+}
+
 }
