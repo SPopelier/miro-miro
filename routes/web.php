@@ -1,71 +1,63 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Product;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\BackofficeController;
 use App\Http\Controllers\AccountController;
 
+// 🔵 Accueil public
+Route::get('/', fn() => view('homepage'))->name('homepage');
 
-Route::get('/dashboard', [AccountController::class, 'dashboard'])
-    ->middleware('auth')
-    ->name('dashboard');
-
-
-// Accueil
-Route::get('/', function () {
-    return view('homepage');
-})->name('homepage');
-
-// Explorer (affiche tous les produits sans tri)
-Route::get('/product', function () {
-    $produits = Product::all();
-    return view('product', compact('produits'));
-})->name('product');
-
-// Tri des produits
+// 🔵 Produits
+Route::get('/product', fn() => view('product', ['produits' => Product::all()]))->name('product');
 Route::get('/product/nom', [ProductController::class, 'sortedByName'])->name('product.nom');
 Route::get('/product/prix', [ProductController::class, 'sortedByPrice'])->name('product.prix');
 Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.show');
-
-// Filtrage depuis formulaire
 Route::post('/product/filtrer', [ProductController::class, 'filtrer'])->name('product.filtrer');
 
-// Personnaliser
-Route::get('/personnaliser', function () {
-    return view('productsheet');
-})->name('productsheet');
+// 🔵 Autres pages
+Route::get('/personnaliser', fn() => view('productsheet'))->name('productsheet');
+Route::get('/contact', fn() => view('contact'))->name('contact');
 
-// Contact
-Route::get('/contact', function () {
-    return view('contact');
-})->name('contact');
-
-// Backoffice
-Route::prefix('backoffice')->group(function () {
-    
-    // Page d'accueil du backoffice
-    Route::get('/', [BackofficeController::class, 'index'])->name('backoffice.index');
-
-    // Création d’un produit
-    Route::get('/create', [BackofficeController::class, 'create'])->name('backoffice.create');
-    Route::post('/store', [BackofficeController::class, 'store'])->name('backoffice.store');
-
-    // Édition et mise à jour d’un produit
-    Route::get('/produits/{id}/edit', [BackofficeController::class, 'edit'])->name('backoffice.edit');
-    Route::put('/produits/{id}', [BackofficeController::class, 'update'])->name('backoffice.update');
-
-    // Suppression d'un produit
-    Route::delete('/products/{id}', [BackofficeController::class, 'destroy'])->name('backoffice.destroy');
-});
-
-// Mon Compte (avec AccountController)
+// 🔐 Compte utilisateur (standard)
 Route::get('/mon-compte', [AccountController::class, 'show'])->name('mon-compte');
 Route::post('/connexion', [AccountController::class, 'login'])->name('connexion');
 Route::post('/inscription', [AccountController::class, 'register'])->name('inscription');
 
-//Dashboard
+// 🔒 Dashboard utilisateur (non admin)
 Route::get('/dashboard', [AccountController::class, 'dashboard'])
-    ->middleware('auth')
+    ->middleware('auth') // utilisateur standard
     ->name('dashboard');
 
+// 🚪 Déconnexion utilisateur
+Route::post('/logout', function () {
+    Auth::logout();
+    request()->session()->invalidate();
+    request()->session()->regenerateToken();
+    return redirect('/');
+})->name('logout');
+
+// 🛡️ Admin - Tableau de bord
+Route::get('/admin/dashboard', [AccountController::class, 'adminDashboard'])
+    ->name('admin.dashboard');
+
+// 🚪 Déconnexion admin
+Route::post('/admin/logout', function () {
+    Auth::guard('admin')->logout();
+    request()->session()->invalidate();
+    request()->session()->regenerateToken();
+    return redirect('/');
+})->name('admin.logout');
+
+// 🧰 Backoffice (réservé aux utilisateurs authentifiés)
+Route::middleware(['auth'])->prefix('backoffice')->name('backoffice.')->group(function () {
+    Route::get('/dashboard', [BackofficeController::class, 'dashboard'])->name('dashboard');
+    Route::get('/', [BackofficeController::class, 'index'])->name('index');
+    Route::get('/create', [BackofficeController::class, 'create'])->name('create');
+    Route::post('/store', [BackofficeController::class, 'store'])->name('store');
+    Route::get('/produits/{id}/edit', [BackofficeController::class, 'edit'])->name('edit');
+    Route::put('/produits/{id}', [BackofficeController::class, 'update'])->name('update');
+    Route::delete('/produits/{id}', [BackofficeController::class, 'destroy'])->name('destroy');
+});

@@ -1,52 +1,45 @@
-@extends('layouts.backoffice')
+@extends('layouts.main')
 
 @section('title', 'Dashboard Admin')
 
 @section('content')
-<div class="container">
-    <h1 class="mb-4">Tableau de bord</h1>
+    <div class="container mt-5">
+        <h1 class="mb-4">📊 Tableau de bord de l’administrateur</h1>
 
-    {{-- Statistiques rapides --}}
-    <div class="row mb-4">
-        <div class="col-md-4">
-            <div class="card text-white bg-primary mb-3">
-                <div class="card-header">Produits</div>
-                <div class="card-body">
-                    <h5 class="card-title">{{ $nombreProduits }} produit(s)</h5>
-                    <p class="card-text">Nombre total de produits enregistrés</p>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="p-4 bg-light border rounded">
+                    <h5>Total des produits</h5>
+                    <p class="fs-4 fw-bold">{{ $nombreProduits }}</p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="p-4 bg-light border rounded">
+                    <h5>Produits en stock</h5>
+                    <p class="fs-4 fw-bold">{{ $produitsStock }}</p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="p-4 bg-light border rounded">
+                    <h5>Dernier produit ajouté</h5>
+                    @if ($dernierProduit)
+                        <ul class="list-unstyled">
+                            <li><strong>Nom :</strong> {{ $dernierProduit->nom }}</li>
+                            <li><strong>Prix :</strong> {{ $dernierProduit->prix }} €</li>
+                            <li><strong>Stock :</strong> {{ $dernierProduit->stock }}</li>
+                        </ul>
+                    @else
+                        <p>Aucun produit disponible.</p>
+                    @endif
                 </div>
             </div>
         </div>
 
-        <div class="col-md-4">
-            <div class="card text-white bg-success mb-3">
-                <div class="card-header">Stock suffisant</div>
-                <div class="card-body">
-                    <h5 class="card-title">{{ $produitsStock }} en stock</h5>
-                    <p class="card-text">Produits actuellement disponibles</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-4">
-            <div class="card text-white bg-warning mb-3">
-                <div class="card-header">Ajout récent</div>
-                <div class="card-body">
-                    <h5 class="card-title">{{ $dernierProduit->nom ?? 'Aucun' }}</h5>
-                    <p class="card-text">Dernier produit ajouté</p>
-                </div>
-            </div>
+        <div class="mt-4">
+            <a href="{{ route('backoffice.create') }}" class="btn btn-success">➕ Ajouter un produit</a>
+            <a href="{{ route('backoffice.index') }}" class="btn btn-secondary">📋 Voir tous les produits</a>
         </div>
     </div>
-
-    {{-- Actions rapides --}}
-    <div class="row">
-        <div class="col-md-6">
-            <a href="{{ route('product.create') }}" class="btn btn-dark w-100 mb-3">➕ Ajouter un produit</a>
-        </div>
-        <div class="col-md-6">
-            <a href="{{ route('product.index') }}" class="btn btn-outline-dark w-100 mb-3">📝 Gérer les produits</a>
-        </div>
-    </div>
-</div>
 @endsection
